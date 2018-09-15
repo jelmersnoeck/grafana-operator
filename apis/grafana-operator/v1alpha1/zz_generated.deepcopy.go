@@ -104,6 +104,7 @@ func (in *GrafanaSpec) DeepCopyInto(out *GrafanaSpec) {
 		*out = make([]v1.LocalObjectReference, len(*in))
 		copy(*out, *in)
 	}
+	in.Resources.DeepCopyInto(&out.Resources)
 	return
 }
 

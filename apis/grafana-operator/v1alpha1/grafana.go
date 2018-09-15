@@ -23,6 +23,9 @@ type GrafanaSpec struct {
 	// The Service Accout Name within the same Namespace to use to deploy
 	// Grafana.
 	ServiceAccountName string `json:"serviceAccountName,omitempty"`
+
+	// Resources defines the configured resources for the Grafana container.
+	Resources v1.ResourceRequirements `json:"resources,omitempty"`
 }
 
 // +genclient

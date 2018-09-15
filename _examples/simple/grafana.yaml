@@ -4,4 +4,10 @@ metadata:
   name: simple
   namespace: grafana-operator
 spec:
-  replicas: 2
+  resources:
+    requests:
+      memory: 256M
+      cpu: 100m
+    limits:
+      memory: 500M
+      cpu: 500m
