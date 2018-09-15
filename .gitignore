@@ -1,0 +1,7 @@
+vendor
+build
+bin
+
+coverage.txt
+cover.out
+cover.html

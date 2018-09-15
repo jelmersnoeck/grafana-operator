@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: grafana-operator
+
+---
+
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: grafanas.grafana.sphc.io
+  labels:
+    component: grafana
+spec:
+  group: grafana.sphc.io
+  version: v1alpha1
+  scope: Namespaced
+  names:
+    plural: grafanas
+    kind: Grafana
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: grafana-operator:operator
+rules:
+  - apiGroups: ["grafana.sphc.io"]
+    resources: ["grafana"]
+    verbs: ["get", "list", "watch", "update", "patch"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: grafana-operator:operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: grafana-operator:operator
+subjects:
+  - name: grafana-operator
+    namespace: grafana-operator
+    kind: ServiceAccount
+
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: grafana-operator
+  namespace: grafana-operator
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: grafana-operator
+  namespace: grafana-operator
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: grafana-operator
+    spec:
+      serviceAccountName: grafana-operator
+      containers:
+        - name: grafana-operator
+          image: jelmersnoeck/grafana-operator:latest
+          imagePullPolicy: IfNotPresent
+          args:
+          - operator
+          resources:
+            requests:
+              cpu: 10m
+              memory: 10Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi

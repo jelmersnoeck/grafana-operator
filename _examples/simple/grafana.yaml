@@ -1,0 +1,7 @@
+apiVersion: grafana.sphc.io/v1alpha1
+kind: Grafana
+metadata:
+  name: simple
+  namespace: grafana-operator
+spec:
+  replicas: 2
