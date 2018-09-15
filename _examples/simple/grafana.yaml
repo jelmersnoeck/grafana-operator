@@ -4,6 +4,9 @@ metadata:
   name: simple
   namespace: grafana-operator
 spec:
+  configSelector:
+    matchLabels:
+      team: grafana
   resources:
     requests:
       memory: 256M

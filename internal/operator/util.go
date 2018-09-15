@@ -21,3 +21,7 @@ func grafanaOwner(obj *v1alpha1.Grafana) metav1.OwnerReference {
 		v1alpha1.SchemeGroupVersion.WithKind("Grafana"),
 	)
 }
+
+func datasourceName(obj *v1alpha1.Grafana) string {
+	return fmt.Sprintf("grafana-datasources-%s", obj.Name)
+}

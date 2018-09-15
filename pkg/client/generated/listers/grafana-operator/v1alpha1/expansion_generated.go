@@ -24,6 +24,14 @@
 
 package v1alpha1
 
+// DatasourceListerExpansion allows custom methods to be added to
+// DatasourceLister.
+type DatasourceListerExpansion interface{}
+
+// DatasourceNamespaceListerExpansion allows custom methods to be added to
+// DatasourceNamespaceLister.
+type DatasourceNamespaceListerExpansion interface{}
+
 // GrafanaListerExpansion allows custom methods to be added to
 // GrafanaLister.
 type GrafanaListerExpansion interface{}

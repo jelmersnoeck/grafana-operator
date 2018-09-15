@@ -21,6 +21,22 @@ spec:
 
 ---
 
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: datasources.grafana.sphc.io
+  labels:
+    component: datasource
+spec:
+  group: grafana.sphc.io
+  version: v1alpha1
+  scope: Namespaced
+  names:
+    plural: datasources
+    kind: Datasource
+
+---
+
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:

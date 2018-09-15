@@ -1,0 +1,14 @@
+apiVersion: grafana.sphc.io/v1alpha1
+kind: Datasource
+metadata:
+  name: prometheus-operations
+  namespace: grafana-operator
+  labels:
+    team: grafana
+spec:
+  version: 1
+  type: prometheus
+  access: proxy
+  url: http://prometheus-operations.operations:9090
+  editable: false
+  version: 1

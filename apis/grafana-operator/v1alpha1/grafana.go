@@ -7,6 +7,10 @@ import (
 
 // Grafana is the actual configuration used to configure a Grafana Deployment.
 type GrafanaSpec struct {
+	// ConfigSelector is used to determine which config CRDs should be
+	// associated with this Grafana instance.
+	ConfigSelector metav1.LabelSelector `json:"configSelector"`
+
 	// The number of instances that should be deployed.
 	Replicas *int32 `json:"replicas,omitempty"`
 

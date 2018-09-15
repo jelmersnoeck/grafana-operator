@@ -34,6 +34,10 @@ type FakeGrafanaV1alpha1 struct {
 	*testing.Fake
 }
 
+func (c *FakeGrafanaV1alpha1) Datasources(namespace string) v1alpha1.DatasourceInterface {
+	return &FakeDatasources{c, namespace}
+}
+
 func (c *FakeGrafanaV1alpha1) Grafanas(namespace string) v1alpha1.GrafanaInterface {
 	return &FakeGrafanas{c, namespace}
 }

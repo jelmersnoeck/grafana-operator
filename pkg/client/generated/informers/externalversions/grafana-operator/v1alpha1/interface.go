@@ -30,6 +30,8 @@ import (
 
 // Interface provides access to all the informers in this group version.
 type Interface interface {
+	// Datasources returns a DatasourceInformer.
+	Datasources() DatasourceInformer
 	// Grafanas returns a GrafanaInformer.
 	Grafanas() GrafanaInformer
 }
@@ -43,6 +45,11 @@ type version struct {
 // New returns a new Interface.
 func New(f internalinterfaces.SharedInformerFactory, namespace string, tweakListOptions internalinterfaces.TweakListOptionsFunc) Interface {
 	return &version{factory: f, namespace: namespace, tweakListOptions: tweakListOptions}
+}
+
+// Datasources returns a DatasourceInformer.
+func (v *version) Datasources() DatasourceInformer {
+	return &datasourceInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
 }
 
 // Grafanas returns a GrafanaInformer.

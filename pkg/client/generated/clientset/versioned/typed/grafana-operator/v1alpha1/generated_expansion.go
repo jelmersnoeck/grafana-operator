@@ -24,4 +24,6 @@
 
 package v1alpha1
 
+type DatasourceExpansion interface{}
+
 type GrafanaExpansion interface{}

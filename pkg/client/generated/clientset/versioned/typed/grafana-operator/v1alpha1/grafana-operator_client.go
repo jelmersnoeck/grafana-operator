@@ -33,12 +33,17 @@ import (
 
 type GrafanaV1alpha1Interface interface {
 	RESTClient() rest.Interface
+	DatasourcesGetter
 	GrafanasGetter
 }
 
 // GrafanaV1alpha1Client is used to interact with features provided by the grafana.sphc.io group.
 type GrafanaV1alpha1Client struct {
 	restClient rest.Interface
+}
+
+func (c *GrafanaV1alpha1Client) Datasources(namespace string) DatasourceInterface {
+	return newDatasources(c, namespace)
 }
 
 func (c *GrafanaV1alpha1Client) Grafanas(namespace string) GrafanaInterface {
